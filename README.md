@@ -33,12 +33,37 @@ We follow the GitFlow branching model for development:
 - Releases: `release/version-number`
 
 ### Workflow Rules
-1. Create feature branches from `develop`
-2. Create release branches from `develop`
-3. Create hotfix branches from `main`
-4. Merge feature branches into `develop`
-5. Merge release branches into both `main` and `develop`
-6. Merge hotfix branches into both `main` and `develop`
+1. Development Flow:
+   - All development happens in feature branches
+   - Feature branches are created from `develop`
+   - Feature branches are merged back into `develop` via Pull Request
+   - Code review is required before merging
+
+2. Release Process:
+   - Release branches are created from `develop`
+   - Only bug fixes and release preparations in release branches
+   - Release branches are merged into `main` AND `develop`
+   - Tag the release in `main` with version number
+   - Delete release branch after merging
+
+3. Hotfix Process:
+   - Hotfix branches are created from `main`
+   - Only critical bug fixes in hotfix branches
+   - Hotfix branches are merged into `main` AND `develop`
+   - Tag the hotfix in `main` with updated version number
+   - Delete hotfix branch after merging
+
+4. Pull Request Requirements:
+   - All code changes require a Pull Request
+   - PRs must be reviewed by at least one team member
+   - All tests must pass
+   - No sensitive data in commits
+   - Follow commit message convention
+
+5. Version Tagging:
+   - Releases: v1.0.0, v1.1.0, etc.
+   - Hotfixes: v1.0.1, v1.1.1, etc.
+   - Use semantic versioning (MAJOR.MINOR.PATCH)
 
 ### Commit Message Convention
 ```
