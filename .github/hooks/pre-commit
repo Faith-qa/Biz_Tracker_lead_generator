@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# List of files/patterns that should never be committed
+FORBIDDEN_PATTERNS=(
+    "\.env$"
+    "\.env\.docker$"
+    "password"
+    "secret"
+    "key"
+    "token"
+    "credential"
+)
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo "🔍 Checking for sensitive files..."
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only)
+
+# Flag to track if we found any sensitive files
+FOUND_SENSITIVE=0
+
+for file in $STAGED_FILES; do
+    # Skip example files
+    if [[ $file == *".example"* ]]; then
+        continue
+    fi
+
+    # Check each forbidden pattern
+    for pattern in "${FORBIDDEN_PATTERNS[@]}"; do
+        if echo "$file" | grep -Eq "$pattern"; then
+            echo "${RED}⚠️  Warning: Potential sensitive file detected: $file${NC}"
+            echo "   This file matches pattern: $pattern"
+            echo "   If this is intended, rename it to include '.example' or force commit with --no-verify"
+            FOUND_SENSITIVE=1
+        fi
+    done
+
+    # Additional check for files containing sensitive content
+    if [ -f "$file" ]; then
+        if grep -Eq "password|secret|key|token|credential" "$file"; then
+            echo "${RED}⚠️  Warning: File contains sensitive content: $file${NC}"
+            echo "   Please check the file content for credentials"
+            FOUND_SENSITIVE=1
+        fi
+    fi
+done
+
+if [ $FOUND_SENSITIVE -eq 1 ]; then
+    echo "${RED}❌ Commit blocked: Sensitive files detected${NC}"
+    echo "To bypass this check, use: git commit --no-verify"
+    exit 1
+else
+    echo "${GREEN}✅ No sensitive files detected${NC}"
+fi 

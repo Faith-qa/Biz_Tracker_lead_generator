@@ -6,6 +6,7 @@ A comprehensive lead generation and management system for service-based business
 
 ```
 biz_Tracker_lead_generator/
+├── .github/          # GitHub configurations and hooks
 ├── backend/          # FastAPI backend
 ├── frontend/         # (Coming soon)
 └── mobile/          # (Coming soon)
@@ -73,25 +74,33 @@ git clone [repository-url]
 cd biz_Tracker_lead_generator
 ```
 
-2. Create and activate virtual environment
+2. Set up Git hooks (Important!)
+```bash
+# Create symbolic link to the pre-commit hook
+ln -sf ../../.github/hooks/pre-commit .git/hooks/pre-commit
+# Make the hook executable
+chmod +x .git/hooks/pre-commit
+```
+
+3. Create and activate virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies
+4. Install dependencies
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables
+5. Set up environment variables
 ```bash
 cp .env.example .env
 # Edit .env with your configurations
 ```
 
-5. Initialize the database
+6. Initialize the database
 ```bash
 # Coming soon
 ```
@@ -120,4 +129,27 @@ git push origin feature/your-feature-name
 
 ## License
 
-[License Type] - See LICENSE file for details 
+[License Type] - See LICENSE file for details
+
+## Security Practices
+
+### Environment Variables
+- Never commit `.env` or `.env.docker` files
+- Use `.env.example` and `.env.docker.example` as templates
+- Copy example files and fill in your own values:
+  ```bash
+  cp .env.example .env
+  cp .env.docker.example .env.docker
+  ```
+
+### Pre-commit Hook
+The repository includes a pre-commit hook that:
+- Prevents committing sensitive files
+- Checks for potential credentials in code
+- Can be bypassed with `git commit --no-verify` if needed
+
+### Sensitive Information
+- Never commit API keys, passwords, or tokens
+- Use environment variables for sensitive data
+- Keep credentials in `.env` files (not tracked by git)
+- Use secret management in production 
