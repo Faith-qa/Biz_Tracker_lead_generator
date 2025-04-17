@@ -1,1 +1,139 @@
- 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+.env.local
+.env.*
+.env.docker
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# IDE - Jupyter Notebook
+.ipynb_checkpoints
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.sqlite3
+*.db
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Redis
+dump.rdb
+*.rdb
+
+# Local development
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# Alembic
+/migrations/versions/*
+!/migrations/versions/.gitkeep
+
+# Frontend
+node_modules/
+/frontend/build
+/frontend/dist
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# Mobile
+/mobile/node_modules/
+/mobile/build
+/mobile/.expo
+/mobile/.env*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.* 
