@@ -126,6 +126,7 @@ node_modules/
 /frontend/.env.test.local
 /frontend/.env.production.local
 
+
 # Mobile
 /mobile/node_modules/
 /mobile/build
