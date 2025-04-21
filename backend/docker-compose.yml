@@ -1,6 +1,26 @@
 version: '3.8'
 
 services:
+  backend:
+    build: .
+    container_name: biz_tracker_backend
+    env_file:
+      - .env.docker
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - REDIS_URL=redis://redis:6379/0
+    networks:
+      - biz_tracker_network
+
   postgres:
     image: postgres:15
     container_name: biz_tracker_db
@@ -15,6 +35,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - biz_tracker_network
 
   redis:
     image: redis:7
@@ -28,7 +50,30 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - biz_tracker_network
+
+  celery:
+    build: .
+    container_name: biz_tracker_celery
+    command: celery -A app.worker worker --loglevel=info
+    env_file:
+      - .env.docker
+    volumes:
+      - .:/app
+    depends_on:
+      - backend
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - REDIS_URL=redis://redis:6379/0
+    networks:
+      - biz_tracker_network
 
 volumes:
   postgres_data:
   redis_data:
+
+networks:
+  biz_tracker_network:
+    driver: bridge
