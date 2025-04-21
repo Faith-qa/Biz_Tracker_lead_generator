@@ -37,8 +37,7 @@ A FastAPI-based backend service for the Biz Tracker application, providing busin
 
 2. Run the setup script:
    ```bash
-   chmod +x setup.sh
-   ./setup.sh
+   bash setup.sh
    ```
 
 3. Update the environment variables in `.env.docker` with your preferred values
