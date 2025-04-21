@@ -38,7 +38,16 @@ if ! command -v docker-compose &> /dev/null; then
 fi
 
 echo -e "${GREEN}Setup completed!${NC}"
-echo -e "${YELLOW}Next steps:${NC}"
-echo "1. Update the values in .env.docker with your preferred credentials"
-echo "2. Run 'docker-compose up --build' to start the services"
-echo "3. The API will be available at http://localhost:8000" 
+
+# Ask if user wants to start the services
+read -p "Do you want to start the Docker services now? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo -e "${GREEN}Starting Docker services...${NC}"
+    docker-compose up --build
+else
+    echo -e "${YELLOW}To start the services later, run:${NC}"
+    echo "docker-compose up --build"
+fi
+
+echo -e "${GREEN}The API will be available at http://localhost:8000${NC}" 

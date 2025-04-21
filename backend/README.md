@@ -39,10 +39,12 @@ A FastAPI-based backend service for the Biz Tracker application, providing busin
    ```bash
    bash setup.sh
    ```
+   The script will:
+   - Set up environment variables
+   - Check for Docker and Docker Compose
+   - Optionally start the Docker services
 
-3. Update the environment variables in `.env.docker` with your preferred values
-
-4. Start the services:
+3. If you chose not to start the services during setup, you can start them later:
    ```bash
    docker-compose up --build
    ```
