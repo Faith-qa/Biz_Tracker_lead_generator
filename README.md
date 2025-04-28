@@ -8,8 +8,7 @@ A comprehensive lead generation and management system for service-based business
 biz_Tracker_lead_generator/
 ├── .github/          # GitHub configurations and hooks
 ├── backend/          # FastAPI backend
-├── frontend/         # (Coming soon)
-└── mobile/          # (Coming soon)
+├── frontend/         # Expo React native
 ```
 
 ## GitFlow Workflow
