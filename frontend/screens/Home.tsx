@@ -26,8 +26,8 @@ const Home: React.FC = () => {
 
   const isMobile = width < 768;
 
-  const { data, isLoading, error }: UseQueryResult<string[], Error> = useQuery({
-    queryKey: ['example'],
+  const { data = [], isLoading, error } = useQuery<string[], Error> ({
+    queryKey: ['exampleData'],
     queryFn: fetchExampleData,
   });
 
