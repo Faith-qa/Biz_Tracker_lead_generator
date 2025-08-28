@@ -162,7 +162,7 @@ const Home: React.FC = () => {
             ))}
           </View>
 
-          {/* --- Updated Recent Activity Section --- */}
+
           <View style={styles.recentActivity}>
             <Text style={styles.sectionTitle}>Recent Activity</Text>
             {recentActivities.map((activity) => (
