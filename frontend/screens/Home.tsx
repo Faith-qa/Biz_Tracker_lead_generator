@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from
 import { StatusBar } from 'expo-status-bar';
 import { Home as HomeIcon, ArrowRight, Phone, Calendar, MessageSquare, User, Plus, Handshake, MagnetIcon, DollarSign } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import * as NavigationBar from 'expo-navigation-bar';
 
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
 
   const { data = [], isLoading, error } = useQuery<string[], Error> ({
     queryKey: ['exampleData'],
-    queryFn: fetchExampleData,
+    queryFn: fetchExampleData
   });
 
   useEffect(() => {
